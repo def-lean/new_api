@@ -50,6 +50,15 @@ app.MapPut("/api/tareas/{id}", (int id, CrearTareaDto dto) =>
 
     return Results.Ok(tareaActualizada);
 });
+//DELETE: eliminar una tarea por su id
+app.MapDelete("/api/tareas/{id}", (int id) =>
+{
+    var tareaExistente = tareas.FirstOrDefault(t => t.Id == id);
+    if (tareaExistente is null) return Results.NotFound("tarea no encontrada");
+
+    tareas.Remove(tareaExistente);
+    return Results.NoContent();
+});
 app.Run();
 
 public record Tarea(int Id, string Titulo, string Descripcion, string Estado, string Prioridad);
