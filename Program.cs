@@ -16,7 +16,7 @@ app.UseHttpsRedirection();
 
 var tareas = new List<Tarea>
 {
-    new(1, "aprender C#", "Completar modulo de Minimal APIs", "pendiente", "alta")
+    new(1, "aprender C#", "Completar modulo de Minimal APIs", "pendiente", "alta" )
 };
 
 app.MapGet("/api/tareas", (string?estado) =>
@@ -37,6 +37,18 @@ app.MapPost("/api/tareas", (CrearTareaDto dto) =>
    var nuevaTarea = new Tarea(tareas.Count + 1, dto.Titulo, dto.Descripcion, dto.Estado, dto.Prioridad);
    tareas.Add(nuevaTarea);
    return Results.Created($"/api/tareas/{nuevaTarea.Id}", nuevaTarea); 
+});
+//PUT: actualizar una tarea existente
+app.MapPut("/api/tareas/{id}", (int id, CrearTareaDto dto) =>
+{
+    var tareaExistente = tareas.FirstOrDefault(t => t.Id == id);
+    if (tareaExistente is null) return Results.NotFound("tarea no encontrada");
+
+    var tareaActualizada = new Tarea(id, dto.Titulo, dto.Descripcion, dto.Estado, dto.Prioridad);
+    tareas.Remove(tareaExistente);
+    tareas.Add(tareaActualizada);
+
+    return Results.Ok(tareaActualizada);
 });
 app.Run();
 
