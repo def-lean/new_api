@@ -31,3 +31,4 @@ C:\Users\afric\ProyectNet\NewApi\obj\Debug\net10.0\refint\NewApi.dll
 C:\Users\afric\ProyectNet\NewApi\obj\Debug\net10.0\NewApi.pdb
 C:\Users\afric\ProyectNet\NewApi\obj\Debug\net10.0\NewApi.genruntimeconfig.cache
 C:\Users\afric\ProyectNet\NewApi\obj\Debug\net10.0\ref\NewApi.dll
+C:\Users\afric\ProyectNet\NewApi\obj\Debug\net10.0\NewApi.sourcelink.json
